@@ -1,3 +1,4 @@
+import { randomId } from "../lib/uuid";
 export type FileStatus = "queued" | "processing" | "ready" | "failed";
 
 export interface FileItem {
@@ -66,7 +67,7 @@ export function getWorkspaceId(): string {
     /* storage blocked: fall back to memory */
   }
   if (!id || !WORKSPACE_RE.test(id)) {
-    id = crypto.randomUUID().replaceAll("-", "");
+    id = randomId();
     try {
       localStorage.setItem(STORAGE_KEY, id);
     } catch {

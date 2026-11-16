@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { randomId } from "../lib/uuid";
 import { errorMessage, streamChat, type ChatTurn, type Source } from "../api/client";
 
 export interface Message {
@@ -14,7 +15,7 @@ const MAX_HISTORY = 10; // backend accepts up to 20
 const MAX_TURN_CHARS = 4000; // backend limit per message
 
 function newId(): string {
-  return crypto.randomUUID();
+  return randomId();
 }
 
 export function useChat() {
